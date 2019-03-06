@@ -1,5 +1,6 @@
-# 2019-03-06:
+# 2019-03-05:
 
+```Groovy
 #!/usr/bin/env groovy
 
 // Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's date and use it from Groovy.
@@ -37,6 +38,7 @@ node {
         sh "date -u +%Y%m%d%H%M%S > TOMORROW.txt"
     }
 }
+```
 
 # 2019-02-22:
 
