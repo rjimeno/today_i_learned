@@ -1,3 +1,43 @@
+
+# 2019-02-22:
+
+GDB does not run on a Apple's OS X until after you have "codesigned" it. One way to go about that is described in the following URL:
+https://gist.github.com/hlissner/898b7dfc0a3b63824a70e15cd0180154
+
+The instructions that follow here are copied from there:
+> Note: these instructions are for pre-Sierra MacOS. Sierra Users: see https://gist.github.com/gravitylow/fb595186ce6068537a6e9da6d8b5b96d by @gravitylow.
+
+If you are getting this in gdb on OSX while trying to run a program:
+
+```bash
+Unable to find Mach task port for process-id 57573: (os/kern) failure (0x5).
+ (please check gdb is codesigned - see taskgated(8))
+```
+
+1. Open Keychain Access
+2. In the menu, open **Keychain Access > Certificate Assistant > Create a certificate**
+3. Give it a name (e.g. `gdbc`)
+    + Identity type: Self Signed Root
+    + Certificate type: Code Signing
+    + Check: let me override defaults
+4. Continue until it prompts you for: "specify a location for..."
+5. Set Keychain location to System
+6. Create a certificate and close assistant.
+7. Find the certificate in System keychains, right click it > get info (or just double click it)
+8. Expand **Trust**, set **Code signing** to `always trust`
+9. Restart taskgated in terminal: `killall taskgated`
+10. Enable root account:
+    1. Open System Preferences
+    2. Go to User & Groups > Unlock
+    3. Login Options > "Join" (next to Network Account Server)
+    4. Click "Open Directory Utility"
+    5. Go up to **Edit > Enable Root User**
+11. Run `codesign -fs gdbc /usr/local/bin/gdb` in terminal: this asks for the root password
+12. Disable root account (see #10)
+
+Done!
+
+
 # 2019-03-05:
 
 ```Jenkinsfile
