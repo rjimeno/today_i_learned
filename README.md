@@ -1,5 +1,5 @@
 
-# 2019-02-22:
+# 2019-03-17:
 
 GDB does not run on a Apple's OS X until after you have "codesigned" it. One way to go about that is described in the following URL:
 https://gist.github.com/hlissner/898b7dfc0a3b63824a70e15cd0180154
@@ -36,6 +36,13 @@ Unable to find Mach task port for process-id 57573: (os/kern) failure (0x5).
 12. Disable root account (see #10)
 
 Done!
+
+
+# 2019-03-15:
+
+Udacity's [Computer Networking by Georgia Tech (UD436) Security and Software Defined Networking](https://www.udacity.com/course/computer-networking--ud436) is an excelent course!
+
+Personally, I reviewed a lot of material that I forgot about Computer Networking back from my days as a student and I also learned a few things that are new or have developed relevance within the past decade.
 
 
 # 2019-03-05:
