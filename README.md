@@ -12,6 +12,43 @@ Immunology](https://www.usenix.org/legacy/publications/library/proceedings/lisa9
 (from a Usenix's LISA conference) as it seem to be important.
 
 
+
+# 2019-04-20:
+
+In Linux, there are multiple ways to find out if a disk spins or is
+solid-state instead. Some of the tools that can be used are `lsblk`,
+`lshw`, `smartctl`, and the simplest of all,
+`cat /sys/block/sda/queue/rotational`.
+
+For detailed information, check the manual pages for each tool. Use
+the following examples as a guide keeping in mind that some may
+require to be run by the root user. sda and /dev/sda in the examples
+should be replaced by your device.
+
+```bash
+$ cat /sys/block/sda/queue/rotational # Will display 0 for SSD.
+```
+
+or
+
+```bash
+$ lsblk -b -o name,rota  # Under the ROTA column, 0 means SSD.
+```
+
+or
+
+```bash
+$ lshw -short -class disk  # May need root to get all the info.
+```
+
+or
+
+```bash
+# smartctl -a /dev/sda  # Will probably fail on a virtual machine.
+```
+
+
+
 # 2019-03-17:
 
 GDB does not run on a Apple's OS X until after you have "codesigned"
@@ -64,6 +101,7 @@ Udacity's [Computer Networking by Georgia Tech (UD436) Security and Software Def
 Personally, I reviewed a lot of material that I forgot about Computer Networking back from my days as a student and I also learned a few things that are new or have developed relevance within the past decade.
 
 
+
 # 2019-03-05:
 
 ```Jenkinsfile
@@ -106,6 +144,8 @@ node {
 }
 ```
 
+
+
 # 2019-02-22:
 
 On a Mac (running OS X or MacOS), Vagrant can be installed using
@@ -118,6 +158,7 @@ simple, command-line software distributed under some FOSS license. In
 contrast, 'brew cask install' commands can be used to install more
 complex software, that has or interacts with a GUI and that is
 licensed under some form of proprietary license.
+
 
 
 # 2019-02-21:
