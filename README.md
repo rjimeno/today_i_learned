@@ -1,11 +1,27 @@
+# 2019-04-21:
+
+CFEngine seem to be the first modern or contemporary Configuration
+Management tool.
+
+I found very interesting information for it on
+Wikipedia although there is currently a warning there regarding
+single-source information.
+
+Finally, I need to find time to read the 1998 paper [Computer
+Immunology](https://www.usenix.org/legacy/publications/library/proceedings/lisa98/full_papers/burgess/burgess.pdf)
+(from a Usenix's LISA conference) as it seem to be important.
+
 
 # 2019-03-17:
 
-GDB does not run on a Apple's OS X until after you have "codesigned" it. One way to go about that is described in the following URL:
+GDB does not run on a Apple's OS X until after you have "codesigned"
+it. One way to go about that is described in the following URL:
 https://gist.github.com/hlissner/898b7dfc0a3b63824a70e15cd0180154
 
 The instructions that follow here are copied from there:
-> Note: these instructions are for pre-Sierra MacOS. Sierra Users: see https://gist.github.com/gravitylow/fb595186ce6068537a6e9da6d8b5b96d by @gravitylow.
+> Note: these instructions are for pre-Sierra MacOS. Sierra Users: see
+https://gist.github.com/gravitylow/fb595186ce6068537a6e9da6d8b5b96d 
+by @gravitylow.
 
 If you are getting this in gdb on OSX while trying to run a program:
 
@@ -15,7 +31,8 @@ Unable to find Mach task port for process-id 57573: (os/kern) failure (0x5).
 ```
 
 1. Open Keychain Access
-2. In the menu, open **Keychain Access > Certificate Assistant > Create a certificate**
+2. In the menu, open **Keychain Access > Certificate Assistant > 
+Create a certificate**
 3. Give it a name (e.g. `gdbc`)
     + Identity type: Self Signed Root
     + Certificate type: Code Signing
@@ -23,7 +40,8 @@ Unable to find Mach task port for process-id 57573: (os/kern) failure (0x5).
 4. Continue until it prompts you for: "specify a location for..."
 5. Set Keychain location to System
 6. Create a certificate and close assistant.
-7. Find the certificate in System keychains, right click it > get info (or just double click it)
+7. Find the certificate in System keychains, right click it > get 
+info (or just double click it)
 8. Expand **Trust**, set **Code signing** to `always trust`
 9. Restart taskgated in terminal: `killall taskgated`
 10. Enable root account:
@@ -32,7 +50,8 @@ Unable to find Mach task port for process-id 57573: (os/kern) failure (0x5).
     3. Login Options > "Join" (next to Network Account Server)
     4. Click "Open Directory Utility"
     5. Go up to **Edit > Enable Root User**
-11. Run `codesign -fs gdbc /usr/local/bin/gdb` in terminal: this asks for the root password
+11. Run `codesign -fs gdbc /usr/local/bin/gdb` in terminal: this asks 
+for the root password
 12. Disable root account (see #10)
 
 Done!
