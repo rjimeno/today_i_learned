@@ -48,6 +48,62 @@ or
 
 
 
+# 2019-04-19:
+
+Building on knowledge from yesterday and addressing a question I was
+not able to answer successfully a few years ago (while working for
+Delivery.com). If you need to "recover" file that was deleted, there
+good hope as long as a running process keeps it open.
+
+As an example, imagine that you deleted a file that you need to
+recover and that `lsof +L1` helps you find out the PID of that keeps
+it open is `12345`. Then you will do:
+
+```bash
+$ ls -l /proc/12345/fd/*
+``` 
+
+And observe that one of those file descriptors point to the file you
+want to recover. Let us suppose the file descriptor here is `4` and
+so your next command will be:
+
+```bash
+$ cp /proc/11230/fd/ recovered_file
+```
+
+Once `cp` is done, the file named `recovered_file` will have the same
+same content as the file that was deleted. It may be relevant to
+note here that if we are working with large files in small file
+systems you may need to get creative on where to put them so they
+fit.
+
+
+
+# 2019-04-18:
+
+In Linux, `+L1` is the only option that is needed to have `lsof`
+report files that have been "deleted" and are still open. This is
+useful because sometimes a file system is out of space even though
+tools like `du` report utilization that is under capacity.
+
+With the command `lsof +L1` you can get a list of all the files in
+the current file system with zero link counts. In other words, a list
+of the files that have no name. You can also think of those as files
+with zero links or, equivalently, files that have been deleted.
+ 
+Still in Linux and probably others OO SS (Solaris for example),
+issuing `lsof | grep deleted` should also show deleted files but
+feels more prone to errors. For example, a script would probably
+fails if the file name or path include the string 'deleted'.
+
+
+
+# 2019-04-17:
+
+In Linux, `df -T` also displays the type of a file system.
+
+
+
 # 2019-03-17:
 
 GDB does not run on a Apple's OS X until after you have "codesigned"
@@ -114,8 +170,8 @@ decade like, for example,  Software Defined Networks.
 
 // Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's date and use it from Groovy.
 
-// The core of this trick is to use “date -d '+1 day'” to get tomorrow’s date on Gnu systems (v.g. Linux) or “date -v+1d” many
-// other systems (like OS X, e.g.).
+// The core of this trick is to use “date -d '+1 day'” to get tomorrow’s date
+// on GNU systems (v.g. Linux) or “date -v+1d” many other systems (like OS X, e.g.).
 
 // Following pair of environment variables will be used later.
 env.utc_today=
