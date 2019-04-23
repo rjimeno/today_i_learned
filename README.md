@@ -17,8 +17,7 @@ Immunology](https://www.usenix.org/legacy/publications/library/proceedings/lisa9
 
 In Linux, there are multiple ways to find out if a disk spins or is
 solid-state instead. Some of the tools that can be used are `lsblk`,
-`lshw`, `smartctl`, and the simplest of all,
-`cat /sys/block/sda/queue/rotational`.
+`lshw`, `smartctl`, and the simplest of all, `cat`.
 
 For detailed information, check the manual pages for each tool. Use
 the following examples as a guide keeping in mind that some may
@@ -96,9 +95,15 @@ Done!
 
 # 2019-03-15:
 
-Udacity's [Computer Networking by Georgia Tech (UD436) Security and Software Defined Networking](https://www.udacity.com/course/computer-networking--ud436) is an excelent course!
+Udacity's [Computer Networking - Security and Software Defined
+Networking, by Georgia Tech (UD436)]
+(https://www.udacity.com/course/computer-networking--ud436) is an
+excellent course!
 
-Personally, I reviewed a lot of material that I forgot about Computer Networking back from my days as a student and I also learned a few things that are new or have developed relevance within the past decade.
+Personally, it reminded me a lot of material that I forgot from
+Computer Networking courses I took in the past. I also learned a few
+things that are new or have developed relevance within the past
+decade like, for example,  Software Defined Networks.
 
 
 
