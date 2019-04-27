@@ -1,3 +1,17 @@
+# 2019-04-25:Markdown.
+
+In Markdown (.md) files, to create *slant* effect, surround with
+asterisks (*). For **bold** effect use double asterisks **.
+
+So far, my two favorite Markdown cheat-sheets are:
+
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links
+
+and
+
+https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
+
+
 # 2019-04-21:
 
 CFEngine seem to be the first modern or contemporary Configuration
