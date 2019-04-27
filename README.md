@@ -1,7 +1,8 @@
 # 2019-04-25:Markdown.
 
 In Markdown (.md) files, to create *slant* effect, surround with
-asterisks (*). For **bold** effect use double asterisks **.
+asterisks or underscore (* or _). For __bold__ effect, surround with
+double asterisks or underscores (** or **).
 
 So far, my two favorite Markdown cheat-sheets are:
 
