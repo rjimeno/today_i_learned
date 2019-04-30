@@ -1,4 +1,13 @@
-# 2019-04-25:Markdown.
+# 2019-04-29: Screen recording with audio.
+
+On a Mac, recording your screen as you speak (for example, to teach a recorded computer-based class), is very simple: You can start quick time as it is already included with the Mac OS, and then select File -> New Screen Recording.
+
+A Screen Recording window will appear and to the right of the recording button (red, at center), select the pull-down so you can choose External Microphone from the list of Microphones. By default, None is selected and that will give you a silent video.
+
+In Google Drive, uploading a 20-minute video created in this way should take approximately 80 minutes.
+
+
+# 2019-04-25: Markdown.
 
 In Markdown (.md) files, to create *slant* effect, surround with
 asterisks or underscore (* or _). For __bold__ effect, surround with
@@ -13,7 +22,7 @@ and
 https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
 
 
-# 2019-04-21:
+# 2019-04-21: CFEngine.
 
 CFEngine seem to be the first modern or contemporary Configuration
 Management tool.
@@ -118,7 +127,6 @@ fails if the file name or path include the string 'deleted'.
 In Linux, `df -T` also displays the type of a file system.
 
 
-
 # 2019-03-17:
 
 GDB does not run on a Apple's OS X until after you have "codesigned"
@@ -219,7 +227,6 @@ node {
     }
 }
 ```
-
 
 
 # 2019-02-22:
