@@ -1,10 +1,10 @@
-# 2019-05-08: `rev | tail | rev` is better than `head`.
+# 2019-05-08: `tail -r | tail | tail -r` is better than `head`.
 
 When comparing the Unix utilities `head` and `tail`, seems apparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the beginning of the input whereas `head` can *not* do its work counting relative to the end of the input.
 
-A clever workaround is to reverse the file you want to work with, then feed it to tail and finally reverse the result once more. That should be equivalent as having `head` being capable of doing its cord counting relative to the end of the input. Example:
+A clever workaround is to invert the file you want to work with, then feed it to tail and finally invert the result again. That should be equivalent as having `head` being capable of doing its work counting relative to the end of the input. Example:
 
-```$ rev < /etc/passwd | tail -n +2 | rev > passwd-except-last-two-lines  # As if 'head -n +2 ' was valid.```
+```$ tail -r < /etc/passwd | tail -n +2 | tail -r > passwd-except-last-two-lines  # As if 'head -n +2 ' was valid.```
 
 # 2019-05-07: `browsh` is really promising, but it is not mature enough just yet.
 
