@@ -1,3 +1,12 @@
+# 2019-05-08: `rev | tail | rev` is better than `tail`.
+
+When comparing the Unix utilities `head` and `tail`, seems aparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the begining of the input. In contrast, `head` can *not* do its work counting relative to the end of the input.
+
+A clever workaround is to reverse the file you want to work with, then feed it to tail and finaly reverse the result once more. That should be equivalent as having `head` being capable of doing its cord counting relative to the end of the input. Example:
+
+```$ rev < /etc/passwd | tail -n +2 | rev > passwd-except-last-two-lines```
+
+
 # 2019-04-29: Screen recording with audio.
 
 On a Mac, recording your screen as you speak (for example, to teach a recorded computer-based class), is very simple: You can start quick time as it is already included with the Mac OS, and then select File -> New Screen Recording.
