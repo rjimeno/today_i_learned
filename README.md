@@ -1,10 +1,24 @@
 # 2019-05-08: `rev | tail | rev` is better than `head`.
 
-When comparing the Unix utilities `head` and `tail`, seems aparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the begining of the input whereas `head` can *not* do its work counting relative to the end of the input.
+When comparing the Unix utilities `head` and `tail`, seems apparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the beginning of the input whereas `head` can *not* do its work counting relative to the end of the input.
 
-A clever workaround is to reverse the file you want to work with, then feed it to tail and finaly reverse the result once more. That should be equivalent as having `head` being capable of doing its cord counting relative to the end of the input. Example:
+A clever workaround is to reverse the file you want to work with, then feed it to tail and finally reverse the result once more. That should be equivalent as having `head` being capable of doing its cord counting relative to the end of the input. Example:
 
 ```$ rev < /etc/passwd | tail -n +2 | rev > passwd-except-last-two-lines  # As if 'head -n +2 ' was valid.```
+
+# 2019-05-07: `browsh` is really promising, but it is not mature enough just yet.
+
+I have been trying to write a Python script that scraps a few values from an HTML document after performing a non-trivial Single Sign-On (SSO) exchange between third parties. I felt one way to get there would be to use tools like `wget` and `curl` to fetch the said HTML document.
+
+Since neither of those tools seems capable of performing anything besides simple authentication, I started exploring the current state of text-based web browsers. My research showed that Lynx, W3m, and ELinks are in great shape. Each has distinctive features with their implicit strengths and weaknesses.
+
+Browsh seems too good to be true, but I'm still evaluating it. I believe Browsh is not *really* a text-based web browser because it depends on Firefox, but I'm not sure just yet as its failed for me on a RedHat Linux system running inside VirtualBox on my Mac (via SSH).
+
+# 2019-05-06: Better *done* than *perfect*.
+
+I first learned about Browsh a few days ago and I wanted to write something about it here. Since I did not know exactly what to write and I did not know enough about Browsh, I postponed it "only one day" for many days, and that is not good.
+
+I should always keep in mind that it is often better to do something imperfect and, maybe, improve on it later if it is useful and worth it. By following that path it is possible to approach perfection in a way that is probably more enjoyable than by trying to approach perfection too early on.
 
 
 # 2019-04-29: Screen recording with audio.
@@ -33,7 +47,7 @@ https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
 
 # 2019-04-21: CFEngine.
 
-CFEngine seem to be the first modern or contemporary Configuration
+CFEngine seems to be the first modern or contemporary Configuration
 Management tool.
 
 I found very interesting information for it on
@@ -42,7 +56,7 @@ single-source information.
 
 Finally, I need to find time to read the 1998 paper [Computer
 Immunology](https://www.usenix.org/legacy/publications/library/proceedings/lisa98/full_papers/burgess/burgess.pdf)
-(from a Usenix's LISA conference) as it seem to be important.
+(from a Usenix's LISA conference) as it seems to be important.
 
 
 
@@ -106,7 +120,7 @@ $ cp /proc/11230/fd/ recovered_file
 
 Once `cp` is done, the file named `recovered_file` will have the same
 same content as the file that was deleted. It may be relevant to
-note here that if we are working with large files in small file
+note here that if we are working with large files in a small file
 systems you may need to get creative on where to put them so they
 fit.
 
@@ -124,10 +138,10 @@ the current file system with zero link counts. In other words, a list
 of the files that have no name. You can also think of those as files
 with zero links or, equivalently, files that have been deleted.
  
-Still in Linux and probably others OO SS (Solaris for example),
+Still, in Linux and probably others OO SS (Solaris for example),
 issuing `lsof | grep deleted` should also show deleted files but
 feels more prone to errors. For example, a script would probably
-fails if the file name or path include the string 'deleted'.
+fail if the file name or path include the string 'deleted'.
 
 
 
@@ -138,7 +152,7 @@ In Linux, `df -T` also displays the type of a file system.
 
 # 2019-03-17:
 
-GDB does not run on a Apple's OS X until after you have "codesigned"
+GDB does not run on an Apple's OS X until after you have "codesigned"
 it. One way to go about that is described in the following URL:
 https://gist.github.com/hlissner/898b7dfc0a3b63824a70e15cd0180154
 
@@ -247,7 +261,7 @@ Homebrew using the following command:
 $ brew cask install vagrant
 ```
 
-The `brew install` commands without `cask` topically installs somewhat
+The `brew install` commands without `cask` typically install somewhat
 simple, command-line software distributed under some FOSS license. In
 contrast, `brew cask install` commands can be used to install more
 complex software, that has or interacts with a GUI and that is
@@ -257,10 +271,10 @@ licensed under some form of proprietary license.
 
 # 2019-02-21:
 
-By accident, I came accross the executable binary file
+By accident, I came across the executable binary file
 `/usr/bin/sigdist.d` on my Mac and that lead me to `man sigdist.d`
 which in turn sent me to Safari Books Online for the book DTrace:
-Dynamic Tracing in Oracle and so I'm beginning to lear that DTrace is
+Dynamic Tracing in Oracle and so I'm beginning to learn that DTrace is
 a powerful tool that can help me performance-tune software and
 systems.
 
