@@ -1,3 +1,24 @@
+# 2019-05-16: @ times, Python 2 != Python 3 ; part 2 of 2.
+
+I wrote a script that reads log files that have a timestamp in the form of a number of seconds since epoch as a floating point number and tested it with a tiny log file. My initial implementation aimed at Python 3. Tests found records within a second of 2017-05-05T03:25:01.
+
+Then, I added support for Python 2 but found its records at a different time mark: 2017-05-05T07:25:01; that's 4 hours later! The time difference seemed to me due to the way time zones are interpreted. Considering that, it makes sense to use set the TZ environment variable as follows:
+
+```
+$ # The given TIME is in UTC for Python 3.
+$ TZ=UTC   python3 failed_requests.py  2017-05-05T07:25:01.63 2017-05-05T07:25:01.67 log_sample.txt
+Between time   2017-05-05T07:25:01.630000   and time   2017-05-05T07:25:01.670000  :
+player.refinitiv.com returned 33.33% 5xx errors.
+refinitiv.com        returned 40.00% 5xx errors.
+
+$ # The given FILE has timestamps corresponding to UTC-5 for Python 2.
+$ TZ=UTC-5 python2 failed_requests.py  2017-05-05T07:25:01.65  2017-05-05T07:25:01.67 log_sample.txt
+Between time   2017-05-05T07:25:01.650000   and time   2017-05-05T07:25:01.670000  :
+player.refinitiv.com returned 25.00% 5xx errors
+refinitiv.com        returned 80.00% 5xx errors
+```
+
+
 # 2019-05-08: `tail -r | tail | tail -r` is better than `head`.
 
 When comparing the Unix utilities `head` and `tail`, seems apparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the beginning of the input whereas `head` can *not* do its work counting relative to the end of the input.
