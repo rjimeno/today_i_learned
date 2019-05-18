@@ -19,6 +19,40 @@ refinitiv.com        returned 80.00% 5xx errors
 ```
 
 
+# 2019-05-15: @ times, Python 2 != Python 3 ; part 1 of 2.
+
+I wrote a script that checks a timestamp (from a file) to be "sandwiched" between two other timestamps given by the user. The user provides those timestamps in the form of a ISO 8601 date time string. The script uses libraries to do most of the work including conversions from date times represented with strings to timestamps in seconds represented with floating point notation.
+
+Observe that some of those calculations are non-trivial and involve leap years, time zones, daylight savings and even leap seconds. While those calculations are performed by the libraries with Python 3, Python 2 misses some functionality what forced me to implement my own calculations as shown in the following sample code:
+
+```
+from datetime import datetime
+from sys import argv, stdin, version_info
+from dateutil import parser
+
+...
+
+def get_ts(date_time):
+    """
+    Calculates a timestamp differently depending on Python's version.
+    """
+    if version_info[0] <= 2:
+        return (date_time - datetime(1970, 1, 1, tzinfo=None)).total_seconds()
+    # If Python's major version is 3 or above, use the more precise .timestamp()
+    return date_time.timestamp()
+
+def main():
+    start_time, end_time = get_datetimes_checked()
+    for line in stdin:
+        timestamp, host, message = line.rstrip().split(',')
+        if not get_ts(start_time) <= timestamp < get_ts(end_time):
+            continue
+        else:
+            # Do something interesting with host & message information.
+```
+Observing the sample above it becomes clear that Python 3 uses `date_time.timestamp()` but since Python 2 has no .timestamp() method, it is approximated with `(date_time - datetime(1970, 1, 1, tzinfo=None)).total_seconds()` for Python 2. Unfortunately, even for dates that are as close as only a couple of years apart, the precision on the implementation of both methods differ by a fraction of a second.
+
+
 # 2019-05-08: `tail -r | tail | tail -r` is better than `head`.
 
 When comparing the Unix utilities `head` and `tail`, seems apparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the beginning of the input whereas `head` can *not* do its work counting relative to the end of the input.
