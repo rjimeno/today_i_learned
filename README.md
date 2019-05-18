@@ -205,7 +205,7 @@ fail if the file name or path include the string 'deleted'.
 In Linux, `df -T` also displays the type of a file system.
 
 
-# 2019-03-17:
+## 2019-03-17:
 
 GDB does not run on an Apple's OS X until after you have "codesigned"
 it. One way to go about that is described in the following URL:
