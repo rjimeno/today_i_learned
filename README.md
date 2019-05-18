@@ -4,7 +4,7 @@ I wrote a script that reads log files that have a timestamp in the form of a num
 
 Then, I added support for Python 2 but found its records at a different time mark: 2017-05-05T07:25:01; that's 4 hours later! The time difference seemed to me due to the way time zones are interpreted. Considering that, it makes sense to use set the TZ environment variable as follows:
 
-```
+```bash
 $ # The given TIME is in UTC for Python 3.
 $ TZ=UTC   python3 failed_requests.py  2017-05-05T07:25:01.63 2017-05-05T07:25:01.67 log_sample.txt
 Between time   2017-05-05T07:25:01.630000   and time   2017-05-05T07:25:01.670000  :
