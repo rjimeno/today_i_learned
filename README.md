@@ -1,4 +1,4 @@
-## 2019-05-16: @ times, Python 2 != Python 3 ; part 2 of 3.
+## 2019-05-16: @ times, Python 2 != Python 3 ; part 2 of 2.
 
 I wrote a script that reads log files that have a timestamp in the form of a number of seconds since epoch as a floating point number and tested it with a tiny log file. My initial implementation aimed at Python 3. Tests found records within a second of 2017-05-05T03:25:01.
 
@@ -12,18 +12,18 @@ player.refinitiv.com returned 33.33% 5xx errors.
 refinitiv.com        returned 40.00% 5xx errors.
 
 $ # The given FILE has timestamps corresponding to UTC-5 for Python 2.
-$ TZ=UTC-5 python2 failed_requests.py  2017-05-05T07:25:01.65  2017-05-05T07:25:01.67 log_sample.txt
-Between time   2017-05-05T07:25:01.650000   and time   2017-05-05T07:25:01.670000  :
-player.refinitiv.com returned 25.00% 5xx errors
-refinitiv.com        returned 80.00% 5xx errors
+$ TZ=UTC-5 python2 failed_requests.py  2017-05-05T07:25:01.63  2017-05-05T07:25:01.67 log_sample.txt
+Between time   2017-05-05T07:25:01.630000   and time   2017-05-05T07:25:01.670000  :
+player.refinitiv.com returned 33.33% 5xx errors.
+refinitiv.com        returned 40.00% 5xx errors.
 ```
 
 
-## 2019-05-15: @ times, Python 2 != Python 3 ; part 1 of 3.
+## 2019-05-15: @ times, Python 2 != Python 3 ; part 1 of 2.
 
-I wrote a script that checks a timestamp (from a file) to be "sandwiched" between two other timestamps given by the user. The user provides those timestamps in the form of a ISO 8601 date time string. The script uses libraries to do most of the work including conversions from date times represented with strings to timestamps in seconds represented with floating point notation.
+I wrote a script that checks a timestamp (from a file) to be "sandwiched" between two other timestamps given by the user. The script uses libraries to do most of the work including conversions from date times represented with ISO 8601 date times using strings, to timestamps in seconds using floating point notation.
 
-Observe that some of those calculations are non-trivial and involve leap years, time zones, daylight savings and even leap seconds. While those calculations are performed by the libraries with Python 3, Python 2 misses some functionality what forced me to implement my own calculations as shown in the following sample code:
+Observe that some of those calculations are non-trivial and involve leap years, time zones, daylight savings and even leap seconds. While those calculations are performed by the libraries with Python 3, Python 2 misses some functionality and I had to implement my own calculations as shown in the following sample code:
 
 ```python
 from datetime import datetime
