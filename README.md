@@ -144,8 +144,8 @@ $ lshw -short -class disk  # May need root to get all the info.
 
 or
 
-```
-# smartctl -a /dev/sda  # Will probably fail on a virtual machine.
+```bash
+$ sudo smartctl -a /dev/sda  # Will probably fail on a virtual machine.
 ```
 
 
