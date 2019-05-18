@@ -53,6 +53,13 @@ def main():
 Observing the sample above it becomes clear that Python 3 uses `date_time.timestamp()` but since Python 2 has no .timestamp() method, it is approximated with `(date_time - datetime(1970, 1, 1, tzinfo=None)).total_seconds()` for Python 2. Unfortunately, even for dates that are as close as only a couple of years apart, the precision on the implementation of both methods differ by a fraction of a second.
 
 
+## 2019-05-14: Attach a tab to iTerm2.
+
+Deattaching an iTerm2 tab from a window so it can exist in a different, and possibly new window, is easy: You place the pointer on top of the tab and grab the tab out of the window to its new location. The dragging is done by pressing (without releasing), then dragging.
+
+Attaching an independent tab or window is useful when you have too many windows and it makes sense to organize them in fewer windows with tabs. To do this, you also grab, then move to the window that will collect a new tab. The tricky part is that keeping the pointer pressed will not move the window **unless** you press the key combination <kbd>⇧</kbd><kbd>⌥</kbd><kbd>⌘</kbd> (or a similar equivalent depending on your operating system), then pressing the pointer and grabbing to insert the tab into the new location.
+
+
 ## 2019-05-08: `tail -r | tail | tail -r` is better than `head`.
 
 When comparing the Unix utilities `head` and `tail`, seems apparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the beginning of the input whereas `head` can *not* do its work counting relative to the end of the input.
@@ -61,6 +68,7 @@ A clever workaround is to invert the file you want to work with, then feed it to
 
 ```$ tail -r < /etc/passwd | tail -n +2 | tail -r > passwd-except-last-two-lines  # As if 'head -n +2 ' was valid.```
 
+
 ## 2019-05-07: `browsh` is really promising, but it is not mature enough just yet.
 
 I have been trying to write a Python script that scraps a few values from an HTML document after performing a non-trivial Single Sign-On (SSO) exchange between third parties. I felt one way to get there would be to use tools like `wget` and `curl` to fetch the said HTML document.
@@ -68,6 +76,7 @@ I have been trying to write a Python script that scraps a few values from an HTM
 Since neither of those tools seems capable of performing anything besides simple authentication, I started exploring the current state of text-based web browsers. My research showed that Lynx, W3m, and ELinks are in great shape. Each has distinctive features with their implicit strengths and weaknesses.
 
 Browsh seems too good to be true, but I'm still evaluating it. I believe Browsh is not *really* a text-based web browser because it depends on Firefox, but I'm not sure just yet as its failed for me on a RedHat Linux system running inside VirtualBox on my Mac (via SSH).
+
 
 ## 2019-05-06: Better *done* than *perfect*.
 
