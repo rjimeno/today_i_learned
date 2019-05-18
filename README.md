@@ -1,3 +1,22 @@
+## 2019-05-17: Input from files named in command line arguments or standard input.
+
+Earlier today I finished writing a script that required two arguments being passed on the command line. The script was, in essence, a *reducer* or some form of filter that would summarize information. Its input would be taken exclusively from standard input.
+
+Once the script was done, I realized the script would be more useful and easier to handle if input could be read from files with names provided in the command line. Anything after the first pair of arguments would be assumed to be the name of a file and an open() operation would be attempted immediately followed by the reading of all of their contents. Last but not least, an attempt to read from actual stdin until no more input is available.
+
+Since I was in no mood to carefully change significant parts of my code, I searched the Internet for Python libraries to help me and found `fileinput` which provided me with functionality similar to the one I normally enjoy from the diamond operator when programming Perl.
+
+An excerpt of my code using it follows:
+
+```python
+import fileinput
+
+for line in fileinput.input(argv[3:]):
+        tmp = line.rstrip().split(',')
+        if 10 != len(tmp):
+            continue  # That line was probably malformed.
+
+
 ## 2019-05-16: @ times, Python 2 != Python 3 ; part 2 of 2.
 
 I wrote a script that reads log files that have a timestamp in the form of a number of seconds since epoch as a floating point number and tested it with a tiny log file. My initial implementation aimed at Python 3. Tests found records within a second of 2017-05-05T03:25:01.
@@ -23,7 +42,7 @@ refinitiv.com        returned 40.00% 5xx errors.
 
 I wrote a script that checks a timestamp (from a file) to be "sandwiched" between two other timestamps given by the user. The script uses libraries to do most of the work including conversions from date times represented with ISO 8601 date times using strings, to timestamps in seconds using floating point notation.
 
-Observe that some of those calculations are non-trivial and involve leap years, time zones, daylight savings and even leap seconds. While those calculations are performed by the libraries with Python 3, Python 2 misses some functionality and I had to implement my own calculations as shown in the following sample code:
+Observe that some of those calculations are non-trivial and involve leap years, time zones, daylight savings and even leap seconds. While those calculations are performed by the libraries with Python 3, Python 2 misses some functionality and I had to implement my own calculations as shown in the following excerpt code:
 
 ```python
 from datetime import datetime
@@ -45,12 +64,10 @@ def main():
     start_time, end_time = get_datetimes_checked()
     for line in stdin:
         timestamp, host, message = line.rstrip().split(',')
-        if not get_ts(start_time) <= timestamp < get_ts(end_time):
-            continue
-        else:
+        if get_ts(start_time) <= timestamp < get_ts(end_time):
             # Do something interesting with host & message information.
 ```
-Observing the sample above it becomes clear that Python 3 uses `date_time.timestamp()` but since Python 2 has no .timestamp() method, it is approximated with `(date_time - datetime(1970, 1, 1, tzinfo=None)).total_seconds()` for Python 2. Unfortunately, even for dates that are as close as only a couple of years apart, the precision on the implementation of both methods differ by a fraction of a second.
+Observing the sample above it becomes clear that Python 3 uses `date_time.timestamp()` but since Python 2 has no `.timestamp()` method, it is approximated with `(date_time - datetime(1970, 1, 1, tzinfo=None)).total_seconds()` for Python 2. Unfortunately, even for dates that are as close as only a couple of years apart, the precision on the implementation of both methods differ by a fraction of a second.
 
 
 ## 2019-05-14: Attach a tab to iTerm2.
