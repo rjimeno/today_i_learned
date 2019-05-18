@@ -1,4 +1,4 @@
-# 2019-05-16: @ times, Python 2 != Python 3 ; part 2 of 2.
+## 2019-05-16: @ times, Python 2 != Python 3 ; part 2 of 3.
 
 I wrote a script that reads log files that have a timestamp in the form of a number of seconds since epoch as a floating point number and tested it with a tiny log file. My initial implementation aimed at Python 3. Tests found records within a second of 2017-05-05T03:25:01.
 
@@ -19,7 +19,7 @@ refinitiv.com        returned 80.00% 5xx errors
 ```
 
 
-# 2019-05-15: @ times, Python 2 != Python 3 ; part 1 of 2.
+## 2019-05-15: @ times, Python 2 != Python 3 ; part 1 of 3.
 
 I wrote a script that checks a timestamp (from a file) to be "sandwiched" between two other timestamps given by the user. The user provides those timestamps in the form of a ISO 8601 date time string. The script uses libraries to do most of the work including conversions from date times represented with strings to timestamps in seconds represented with floating point notation.
 
@@ -53,7 +53,7 @@ def main():
 Observing the sample above it becomes clear that Python 3 uses `date_time.timestamp()` but since Python 2 has no .timestamp() method, it is approximated with `(date_time - datetime(1970, 1, 1, tzinfo=None)).total_seconds()` for Python 2. Unfortunately, even for dates that are as close as only a couple of years apart, the precision on the implementation of both methods differ by a fraction of a second.
 
 
-# 2019-05-08: `tail -r | tail | tail -r` is better than `head`.
+## 2019-05-08: `tail -r | tail | tail -r` is better than `head`.
 
 When comparing the Unix utilities `head` and `tail`, seems apparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the beginning of the input whereas `head` can *not* do its work counting relative to the end of the input.
 
@@ -61,7 +61,7 @@ A clever workaround is to invert the file you want to work with, then feed it to
 
 ```$ tail -r < /etc/passwd | tail -n +2 | tail -r > passwd-except-last-two-lines  # As if 'head -n +2 ' was valid.```
 
-# 2019-05-07: `browsh` is really promising, but it is not mature enough just yet.
+## 2019-05-07: `browsh` is really promising, but it is not mature enough just yet.
 
 I have been trying to write a Python script that scraps a few values from an HTML document after performing a non-trivial Single Sign-On (SSO) exchange between third parties. I felt one way to get there would be to use tools like `wget` and `curl` to fetch the said HTML document.
 
@@ -69,14 +69,14 @@ Since neither of those tools seems capable of performing anything besides simple
 
 Browsh seems too good to be true, but I'm still evaluating it. I believe Browsh is not *really* a text-based web browser because it depends on Firefox, but I'm not sure just yet as its failed for me on a RedHat Linux system running inside VirtualBox on my Mac (via SSH).
 
-# 2019-05-06: Better *done* than *perfect*.
+## 2019-05-06: Better *done* than *perfect*.
 
 I first learned about Browsh a few days ago and I wanted to write something about it here. Since I did not know exactly what to write and I did not know enough about Browsh, I postponed it "only one day" for many days, and that is not good.
 
 I should always keep in mind that it is often better to do something imperfect and, maybe, improve on it later if it is useful and worth it. By following that path it is possible to approach perfection in a way that is probably more enjoyable than by trying to approach perfection too early on.
 
 
-# 2019-04-29: Screen recording with audio.
+## 2019-04-29: Screen recording with audio.
 
 On a Mac, recording your screen as you speak (for example, to teach a recorded computer-based class), is very simple: You can start quick time as it is already included with the Mac OS, and then select File -> New Screen Recording.
 
@@ -85,7 +85,7 @@ A Screen Recording window will appear and to the right of the recording button (
 In Google Drive, uploading a 20-minute video created in this way should take approximately 80 minutes.
 
 
-# 2019-04-25: Markdown.
+## 2019-04-25: Markdown.
 
 In Markdown (.md) files, to create *slant* effect, surround with
 asterisks or underscore (* or _). For __bold__ effect, surround with
@@ -100,7 +100,7 @@ and
 https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
 
 
-# 2019-04-21: CFEngine.
+## 2019-04-21: CFEngine.
 
 CFEngine seems to be the first modern or contemporary Configuration
 Management tool.
@@ -115,7 +115,7 @@ Immunology](https://www.usenix.org/legacy/publications/library/proceedings/lisa9
 
 
 
-# 2019-04-20:
+## 2019-04-20: Gather information on installed SSD or HDD.
 
 In Linux, there are multiple ways to find out if a disk spins or is
 solid-state instead. Some of the tools that can be used are `lsblk`,
@@ -150,7 +150,7 @@ or
 
 
 
-# 2019-04-19:
+## 2019-04-19:
 
 Building on knowledge from yesterday and addressing a question I was
 not able to answer successfully a few years ago (while working for
@@ -181,7 +181,7 @@ fit.
 
 
 
-# 2019-04-18:
+## 2019-04-18:
 
 In Linux, `+L1` is the only option that is needed to have `lsof`
 report files that have been "deleted" and are still open. This is
@@ -200,7 +200,7 @@ fail if the file name or path include the string 'deleted'.
 
 
 
-# 2019-04-17:
+## 2019-04-17:
 
 In Linux, `df -T` also displays the type of a file system.
 
@@ -250,7 +250,7 @@ for the root password
 Done!
 
 
-# 2019-03-15:
+## 2019-03-15:
 
 Udacity's [Computer Networking - Security and Software Defined
 Networking, by Georgia Tech (UD436)]
@@ -264,7 +264,7 @@ decade like, for example,  Software Defined Networks.
 
 
 
-# 2019-03-05:
+## 2019-03-05:
 
 ```Jenkinsfile
 #!/usr/bin/env groovy
@@ -307,7 +307,7 @@ node {
 ```
 
 
-# 2019-02-22:
+## 2019-02-22:
 
 On a Mac (running OS X or MacOS), Vagrant can be installed using
 Homebrew using the following command:
@@ -324,7 +324,7 @@ licensed under some form of proprietary license.
 
 
 
-# 2019-02-21:
+## 2019-02-21:
 
 By accident, I came across the executable binary file
 `/usr/bin/sigdist.d` on my Mac and that lead me to `man sigdist.d`
