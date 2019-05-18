@@ -80,6 +80,43 @@ Attaching an independent tab or window is useful when you have too many windows 
 A useful animation and *micro*rticle about that is available as [iTerm2 - merge a pane back to window or tab bar](http://azaleasays.com/2014/03/05/iterm2-merge-a-pane-back-to-window-or-tab-bar/).
 
 
+## 2019-05-13: Bridge Python to its past with __future__.
+
+I generaly like to write for version 3 of Python so I can take advantage of features like the improved division, the print function (vs print statement) and even the f-strings. To do so, I hint (almost enforce) the Python 3 by starting my scripts with the following shebang line `#!/usr/bin/env python3`. That way, scripts with execution permission will attempt to use a version 3 over any version 2 in case more than one version is available.
+
+Whenever possible, I try not to forbid the use of Python 2 but, instead, try to write code that works correctly on both. One way to achieve that is by importing the `__future__` library. That way, Python 2 will be provided with a print function just like the one on Python 3. Similarly, the division (/) on Python 2 will behave as the division in Python 3. That really simplifiew my work of making code that was initially written for version 3 work with version 3.
+
+There are times though, when `__future__` does not solve my problem. Those times I use a conditional statement to check for the version numbers stored in sys.version_info[] and conditionally execute code accordingly. The following code is not very useful, but should exemplify this principle:
+
+```Python
+#!/usr/bin/env python3
+
+"""
+Works much better with Python 3 rather than 2.
+Experiment by replacing the searched number (EULER7)
+and limit (EULER10) with a larger combination like
+EULER10 & CLAUSEN or CLAUSEN & LUCAS to compare
+their performance and whether they run successfully
+or exhaust memory (or your patience) in the process.
+"""
+
+import __future__
+import sys
+
+CATALDI = 524287
+EULER7 = 6700417
+EULER10 = 2147483647
+CLAUSEN = 67280421310721
+LUCAS = 170141183460469231731687303715884105727
+
+if sys.version_info[0] <= 2: # xrange() is needed.
+  print(EULER7 in xrange(CATALDI, EULER10 + 10))
+# Version 3 does not have (nor need) xrange().
+print(EULER7 in range(CATALDI, EULER10 + 1))
+# Version 3 works quickly with CLAUSEN and maybe LUCAS.
+```
+
+
 ## 2019-05-08: `tail -r | tail | tail -r` is better than `head`.
 
 When comparing the Unix utilities `head` and `tail`, seems apparent that `tail` has more and better features than `tail` does. For example, `tail` can do its work counting relative to the beginning of the input whereas `head` can *not* do its work counting relative to the end of the input.
