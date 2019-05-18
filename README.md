@@ -4,7 +4,7 @@ I wrote a script that reads log files that have a timestamp in the form of a num
 
 Then, I added support for Python 2 but found its records at a different time mark: 2017-05-05T07:25:01; that's 4 hours later! The time difference seemed to me due to the way time zones are interpreted. Considering that, it makes sense to use set the TZ environment variable as follows:
 
-```bash
+```
 $ # The given TIME is in UTC for Python 3.
 $ TZ=UTC   python3 failed_requests.py  2017-05-05T07:25:01.63 2017-05-05T07:25:01.67 log_sample.txt
 Between time   2017-05-05T07:25:01.630000   and time   2017-05-05T07:25:01.670000  :
@@ -25,7 +25,7 @@ I wrote a script that checks a timestamp (from a file) to be "sandwiched" betwee
 
 Observe that some of those calculations are non-trivial and involve leap years, time zones, daylight savings and even leap seconds. While those calculations are performed by the libraries with Python 3, Python 2 misses some functionality what forced me to implement my own calculations as shown in the following sample code:
 
-```
+```python
 from datetime import datetime
 from sys import argv, stdin, version_info
 from dateutil import parser
@@ -144,7 +144,7 @@ $ lshw -short -class disk  # May need root to get all the info.
 
 or
 
-```bash
+```
 # smartctl -a /dev/sda  # Will probably fail on a virtual machine.
 ```
 
@@ -218,7 +218,7 @@ by @gravitylow.
 
 If you are getting this in gdb on OSX while trying to run a program:
 
-```bash
+```
 Unable to find Mach task port for process-id 57573: (os/kern) failure (0x5).
  (please check gdb is codesigned - see taskgated(8))
 ```
