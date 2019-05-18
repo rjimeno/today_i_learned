@@ -59,7 +59,7 @@ Deattaching an iTerm2 tab from a window so it can exist in a different, and poss
 
 Attaching an independent tab or window is useful when you have too many windows and it makes sense to organize them in fewer windows with tabs. To do this, you also grab, then move to the window that will collect a new tab. The tricky part is that keeping the pointer pressed will not move the window **unless** you press the key combination <kbd>⇧</kbd>+<kbd>⌥</kbd>+<kbd>⌘</kbd> (or a similar equivalent depending on your operating system), then pressing the pointer and grabbing to insert the tab into the new location.
 
-A useful animation and "micro" article about that is available as [iTerm2 - merge a pane back to window or tab bar](http://azaleasays.com/2014/03/05/iterm2-merge-a-pane-back-to-window-or-tab-bar/)
+A useful animation and *micro*rticle about that is available as [iTerm2 - merge a pane back to window or tab bar](http://azaleasays.com/2014/03/05/iterm2-merge-a-pane-back-to-window-or-tab-bar/).
 
 
 ## 2019-05-08: `tail -r | tail | tail -r` is better than `head`.
