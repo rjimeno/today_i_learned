@@ -15,6 +15,7 @@ for line in fileinput.input(argv[3:]):
         tmp = line.rstrip().split(',')
         if 10 != len(tmp):
             continue  # That line was probably malformed.
+```
 
 
 ## 2019-05-16: @ times, Python 2 != Python 3 ; part 2 of 2.
