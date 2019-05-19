@@ -331,7 +331,7 @@ decade like, for example,  Software Defined Networks.
 
 ## 2019-03-08: Better way to get tomorrow's date in Jenkins Pipeline.
 
-I intend to use the following to improve the Jenkinsfile code I showed on [2019-03-05](https://github.com/rjimeno/today_i_learned/blob/master/README.md#2019-03-05) as this seems easier to understand and should be more efficient:
+I intend to use the following to improve the Jenkinsfile code I showed on [2019-03-05](#2019-03-05) as this seems easier to understand and should be more efficient:
 
 ```Groovy
 def temp_date= new Date()
