@@ -344,7 +344,7 @@ echo "Print Date: $TICKET_DATE"
 
 ## 2019-03-05:
 
-```Jenkinsfile
+```Groovy
 #!/usr/bin/env groovy
 
 // Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's date and use it from Groovy.
