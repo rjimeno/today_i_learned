@@ -1,3 +1,11 @@
+## 2019-05-18: dtLint - the date time linter.
+
+Professionally, I deal with time, well, all the time: A moment ago, I wrote a timestamp in the first line of this entry. My job requires my synchronizing efforts with other people that may not be in the same time zone as I do. When we communicate to each other, it is important to make sure we have clear understanding of the actually agreed times in spite of daylight savings and such.
+
+For troubleshooting I often read log files that have records timestamped in UTC and yet, when problems are intially reported that is usually done in local time, not UTC. To assist the troubleshooting process, communication is exchanged via email, some form of real-time messaging, and some other non-textual forms.
+
+For email and possibly instant messaging, I feel it would be nice to have some tool that helps us, humans, verify the communication we write is clear regarding time stamps. perhaps a date-time linter, plug-in for outlook 
+
 ## 2019-05-17: Input from files named in command line arguments or standard input.
 
 Earlier today I finished writing a script that required two arguments being passed on the command line. The script was, in essence, a *reducer* or some form of filter that would summarize information. Its input would be taken exclusively from standard input.
