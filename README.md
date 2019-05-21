@@ -166,6 +166,15 @@ and
 https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
 
 
+## 2019-04-22: Managing vs leading.
+
+What's the difference between managing and leading?
+
+Pamela Rucker reports that John Carter, from Hardvard Busines School, has the following opinion:
+
+Managing, is about dealing with complexity whereas leading, is about dealing with change.
+
+
 ## 2019-04-21: CFEngine.
 
 CFEngine seems to be the first modern or contemporary Configuration
