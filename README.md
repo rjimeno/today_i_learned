@@ -364,23 +364,24 @@ decade like, for example,  Software Defined Networks.
 
 ```Jenkinsfile
 #!/usr/bin/env groovy
-
-// Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's date and use it from Groovy.
+    
+// Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's
+// date and use it from Groovy.
 
 // The core of this trick is to use “date -d '+1 day'” to get tomorrow’s date
-// on GNU systems (v.g. Linux) or “date -v+1d” many other systems (like OS X, e.g.).
+// on GNU systems (v.g. Linux) or “date -v+1d” many other systems (like OS X).
 
 // Following pair of environment variables will be used later.
-env.utc_today=
+env.utc_today=''
 env.utc_tomorrow='' 
 
-// This post_alarm() function is not really necessary, but shows formatting ISO style.
+// This function is not used but put here to show formatting ISO-style.
 def post_alarm(body) {
     String data = dataForCurl(body, '')
 
     sh """
         iso_today=\$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
-        iso_tomorrow=\$(date -d “+1 day” -u +%Y-%m-%dT%H:%M:%S.000Z)
+        iso_tomorrow=\$(date -d "+1 day" -u +%Y-%m-%dT%H:%M:%S.000Z)
     """
 }
 
@@ -391,13 +392,13 @@ node {
                 returnStdout: true
         ).trim()
         env.utc_tomorrow = sh (
-                script: 'date -d “+1 day” -u +%Y%m%d%H%M%S',
+                script: 'date -d "+1 day" -u +%Y%m%d%H%M%S',
                 returnStdout: true
         ).trim()
-        println $env.utc_today
-        println $env.utc_tomorrow
-        sh "date -u +%Y%m%d%H%M%S > TODAY.txt"
-        sh "date -u +%Y%m%d%H%M%S > TOMORROW.txt"
+        println env.utc_today
+        println env.utc_tomorrow
+        sh 'date -u +%Y%m%d%H%M%S > TODAY.txt'
+        sh 'date -d "+1 day" -u +%Y%m%d%H%M%S > TOMORROW.txt'
     }
 }
 ```
