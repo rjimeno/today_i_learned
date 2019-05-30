@@ -298,6 +298,8 @@ fail if the file name or path include the string 'deleted'.
 
 In Linux, `df -T` also displays the type of a file system.
 
+*Update: on [2019-05-30](https://github.com/rjimeno/today_i_learned/blob/master/README.md#2019-05-30-what-type-is-that-unmounted-file-system) I learned a way to display the type of a file system that is __not__ mounted.*
+
 
 ## 2019-03-17:
 
