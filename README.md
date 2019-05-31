@@ -358,9 +358,15 @@ Computer Networking courses I took in the past. I also learned a few
 things that are new or have developed relevance within the past
 decade like, for example,  Software Defined Networks.
 
+## 2019-05-08:
 
+## 2019-03-05: Sharing "future" timestamps from Jenkins 2 using a scripted Jenkinsfile pipeline.
 
-## 2019-03-05:
+Last year I wrote a Jenkinsfile that, for reasons that I can't remember anymore, required a couple of timestamps to be shared. I remember thinking of using environment variables as well as temporary files, but can't recall all my reasoning for deciding on the latter.
+
+Along the development path, I collected idiocracies, and my solution became cumbersome. Once my code solved the problem effectively (and not necessarily, efficiently), was vetted by my teammates, and got merged into a master branch, I patiently waited to seize an opportunity to improve it.
+
+The following code summarizes and exhibits the core components I want to address. All further comments don't appear here but in [2019-03-08] instead.
 
 ```Jenkinsfile
 #!/usr/bin/env groovy
