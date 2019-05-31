@@ -360,7 +360,7 @@ decade like, for example,  Software Defined Networks.
 
 ## 2019-05-08: Sharing "future" timestamps from Jenkins 2 using a scripted Jenkinsfile pipeline; part 2 of 2.
 
-In my previous post from [2019-03-05] I showed a Jenkinsfile that creates two files named TODAY.txt and TOMORROW.txt whose content is a 15-digit timestamp with the form YYYYMMddHHmmss where YYYY is the year, MM the month, dd - day of the month, HH - 0 to 23 hours of the day, mm - 0 to 59 minutes in each hour, ss - 0 to 59 or 60 seconds in a minute.
+In my previous post from [2019-03-05](https://github.com/rjimeno/today_i_learned/blob/master/README.md#2019-03-05-sharing-future-timestamps-from-jenkins-2-using-a-scripted-jenkinsfile-pipeline-part-1-of-2) I showed a Jenkinsfile that creates two files named TODAY.txt and TOMORROW.txt whose content is a 15-digit timestamp with the form YYYYMMddHHmmss where YYYY is the year, MM the month, dd - day of the month, HH - 0 to 23 hours of the day, mm - 0 to 59 minutes in each hour, ss - 0 to 59 or 60 seconds in a minute.
 
 That Jenkinsfile is good because it can be deployed by a regular user without requing approval from an administrator on most (probably all) Unix-like Jenkins hosts. On the other hand, its code is long and cumbersmome. For more than one reason it is not good enough for large scale deployments where multiple executions would, most probably, "step on each other" and break havoc.
 
