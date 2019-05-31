@@ -366,7 +366,7 @@ That Jenkinsfile is good because it can be deployed by a regular user without re
 
 One of my coworkers proposed a very elegant solution that required very few changes. So far, the only downsides I see are that it does require approval from and administrator (as static methods are not allowed on Jenkin's Groovy) and that it does not fully run on non-unix systems yet. Here's the code:
 
-'''Jenkinsfile
+```Jenkinsfile
 #!/usr/bin/env groovy
     
 // Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's
@@ -391,7 +391,7 @@ node {
         sh 'echo ${tomorrow} > TOMORROW.TXT'  // Fails on Windows.
     }
 }
-'''
+```
 
 
 ## 2019-03-05: Sharing "future" timestamps from Jenkins 2 using a scripted Jenkinsfile pipeline; part 1 of 2.
@@ -400,7 +400,7 @@ Last year I wrote a Jenkinsfile that, for reasons that I can't remember anymore,
 
 Along the development path, I collected idiocracies, and my solution became cumbersome. Once my code solved the problem effectively (and not necessarily, efficiently), was vetted by my teammates, and got merged into a master branch, I patiently waited to seize an opportunity to improve it.
 
-The following code summarizes and exhibits the core components I want to address. All further comments don't appear here but in [2019-03-08] instead.
+The following code summarizes and exhibits the core components I want to address. All further comments don't appear here but in [2019-03-08](https://github.com/rjimeno/today_i_learned/blob/master/README.md#2019-05-08-sharing-future-timestamps-from-jenkins-2-using-a-scripted-jenkinsfile-pipeline-part-2-of-2) instead.
 
 ```Jenkinsfile
 #!/usr/bin/env groovy
