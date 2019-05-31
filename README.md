@@ -358,9 +358,43 @@ Computer Networking courses I took in the past. I also learned a few
 things that are new or have developed relevance within the past
 decade like, for example,  Software Defined Networks.
 
-## 2019-05-08:
+## 2019-05-08: Sharing "future" timestamps from Jenkins 2 using a scripted Jenkinsfile pipeline; part 2 of 2.
 
-## 2019-03-05: Sharing "future" timestamps from Jenkins 2 using a scripted Jenkinsfile pipeline.
+In my previous post from [2019-03-05] I showed a Jenkinsfile that creates two files named TODAY.txt and TOMORROW.txt whose content is a 15-digit timestamp with the form YYYYMMddHHmmss where YYYY is the year, MM the month, dd - day of the month, HH - 0 to 23 hours of the day, mm - 0 to 59 minutes in each hour, ss - 0 to 59 or 60 seconds in a minute.
+
+That Jenkinsfile is good because it can be deployed by a regular user without requing approval from an administrator on most (probably all) Unix-like Jenkins hosts. On the other hand, its code is long and cumbersmome. For more than one reason it is not good enough for large scale deployments where multiple executions would, most probably, "step on each other" and break havoc.
+
+One of my coworkers proposed a very elegant solution that required very few changes. So far, the only downsides I see are that it does require approval from and administrator (as static methods are not allowed on Jenkin's Groovy) and that it does not fully run on non-unix systems yet. Here's the code:
+
+'''Jenkinsfile
+#!/usr/bin/env groovy
+    
+// Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's
+// date and use it from Groovy.
+                
+// This function is not used but put here to show formatting ISO-style.
+def post_alarm(body) {
+    String data = dataForCurl(body, '')
+    def iso_today   =temp_date.format("YYYY-MM-ddTHH:mm:ss.000Z")
+    def iso_tomorrow=temp_date.format("YYYY-MM-ddTHH:mm:ss.000Z")
+}
+
+node {
+    stage('Create time stamp.') {
+        def timestamp_today = new Date()
+        def timestamp_tomorrow = timestamp_today.next()
+        def today=timestamp_today.format("YYYYMMddHHmmss")
+        def tomorrow=timestamp_tomorrow.format("YYYYMMddHHmmss")
+        println today + " == today."
+        println tomorrow + " == tomorrow."
+        sh 'echo ${today} > TODAY.TXT'  // Fails on Windows; comment-out.
+        sh 'echo ${tomorrow} > TOMORROW.TXT'  // Fails on Windows.
+    }
+}
+'''
+
+
+## 2019-03-05: Sharing "future" timestamps from Jenkins 2 using a scripted Jenkinsfile pipeline; part 1 of 2.
 
 Last year I wrote a Jenkinsfile that, for reasons that I can't remember anymore, required a couple of timestamps to be shared. I remember thinking of using environment variables as well as temporary files, but can't recall all my reasoning for deciding on the latter.
 
