@@ -1,3 +1,89 @@
+## 2021-11-11: Object Orientation is more important than ever.
+
+I need refreshers of all the following:
+- Zombie vs orphan processes.
+- Unix signals.
+- The boot process.
+- Differences between RHEL 6, 7 & 8.
+- Memory management algorithms in Python.
+
+# 2021-11-10: Create and see zombie processes.
+
+Technically, zombie processes are not processes because they are not programs being executed.
+
+Zombie processes are entries in the process table associated with processes that completed their execution and no longer exist.
+
+If you are lucky you may be able to detect a zombie process by running tools like `ps` or `top`. If you are not lucky, then you can create some and see their Process Identification numbers (PIDs) as follows:
+
+First, on a terminal windows, run the following shell command:
+
+```
+while true ; do ps axo pid=,stat= | awk '$2~/^Z/ { print $1, $2 }' ; done
+```
+
+The above command is simply an infinite loop around the following `ps axo pid=,stat= | awk '$2~/^Z/ { print $1 }'`. The`ps` there list the PIDs and status of processes, which are then passed to `awk` to print the PIDs only of those processes whose status starts with 'Z' (i.e. zombie processes).
+
+Leave that running and on another terminal window build the following C code:
+
+```
+/* File: zombies.c
+   Compile: make zombies
+   Run: ./zombies
+   Source: Wikipedia */
+
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(void)
+{
+    pid_t pids[10];
+    int i;
+
+    for (i = 9; i >= 0; --i) {
+        pids[i] = fork();
+        if (pids[i] == 0) {
+            printf("Child%d\n", i);
+            sleep(i+1);
+            _exit(0);
+        }
+    }
+
+    for (i = 9; i >= 0; --i) {
+        printf("parent%d\n", i);
+        waitpid(pids[i], NULL, 0);
+    }
+
+    return 0;
+}
+```
+
+When run, the program will take a few seconds to execute. While it runs, you will be able to see the PIDs of zombie processes displayed on the other window (note the simple script above does show repeated PIDs as it runs)
+
+ Credits go to [Wikipedia for the C code](https://en.wikipedia.org/wiki/Zombie_process#Example) and [Askubuntu for the ps-to-awk pipe](https://askubuntu.com/questions/111422/how-to-find-zombie-process).
+
+
+## 2021-11-09: Object Orientation is more important than ever.
+
+To be a successful software developer, you need to have thorough
+understanding of object orientation.
+
+Some of the most important relationships between objects are:
+
+**Inheritance**: when an object is a (*is-a*) of a certain type.
+
+**Association**: when an object has a (*has-a*) relationship with other
+object or objects. Objects are independent in their lifecycles.
+
+**Aggregations**: is a special form of association where all the related
+objects are *owned*. Nevertheless, the lifetimes of the objects are
+independent. (*whole-part* and *a-part-of* apply instead of *has-a*)
+
+**Composition**: is a special form of aggregation where the owned object
+have dependent lifecycles.
+
+
 ## 2019-05-30: What type is that (unmounted) file system?
 
 On [2019-04-17](https://github.com/rjimeno/today_i_learned#2019-04-17) I wrote about a neat way to obtain the type of a file system __that is already mounted__. That's not the only way, but it is a neat one. The problem with it is that it requires the file system to be mounted and, the core problem is that, sometimes we do not know the type of a file system that we want to mount and it is for that reason that we cannot mount it; kind-of chicken-and-egg problem!
@@ -101,9 +187,9 @@ A useful animation and *micro*rticle about that is available as [iTerm2 - merge 
 
 ## 2019-05-13: Bridge Python to its past with __future__.
 
-I generaly like to write for version 3 of Python so I can take advantage of features like the improved division, the print function (vs print statement) and even the f-strings. To do so, I hint (almost enforce) the Python 3 by starting my scripts with the following shebang line `#!/usr/bin/env python3`. That way, scripts with execution permission will attempt to use a version 3 over any version 2 in case more than one version is available.
+I generally like to write for version 3 of Python so I can take advantage of features like the improved division, the print function (vs print statement) and even the f-strings. To do so, I hint (almost enforce) the Python 3 by starting my scripts with the following shebang line `#!/usr/bin/env python3`. That way, scripts with execution permission will attempt to use a version 3 over any version 2 in case more than one version is available.
 
-Whenever possible, I try not to forbid the use of Python 2 but, instead, try to write code that works correctly on both. One way to achieve that is by importing the `__future__` library. That way, Python 2 will be provided with a print function just like the one on Python 3. Similarly, the division (/) on Python 2 will behave as the division in Python 3. That really simplifiew my work of making code that was initially written for version 3 work with version 3.
+Whenever possible, I try not to forbid the use of Python 2 but, instead, try to write code that works correctly on both. One way to achieve that is by importing the `__future__` library. That way, Python 2 will be provided with a print function just like the one on Python 3. Similarly, the division (/) on Python 2 will behave as the division in Python 3. That really simplified my work of making code that was initially written for version 3 work with version 3.
 
 There are times though, when `__future__` does not solve my problem. Those times I use a conditional statement to check for the version numbers stored in sys.version_info[] and conditionally execute code accordingly. The following code is not very useful, but should exemplify this principle:
 
@@ -257,7 +343,7 @@ it open is `12345`. Then you will do:
 
 ```bash
 $ ls -l /proc/12345/fd/*
-``` 
+```
 
 And observe that one of those file descriptors point to the file you
 want to recover. Let us suppose the file descriptor here is `4` and
@@ -286,7 +372,7 @@ With the command `lsof +L1` you can get a list of all the files in
 the current file system with zero link counts. In other words, a list
 of the files that have no name. You can also think of those as files
 with zero links or, equivalently, files that have been deleted.
- 
+
 Still, in Linux and probably others OO SS (Solaris for example),
 issuing `lsof | grep deleted` should also show deleted files but
 feels more prone to errors. For example, a script would probably
@@ -309,7 +395,7 @@ https://gist.github.com/hlissner/898b7dfc0a3b63824a70e15cd0180154
 
 The instructions that follow here are copied from there:
 > Note: these instructions are for pre-Sierra MacOS. Sierra Users: see
-https://gist.github.com/gravitylow/fb595186ce6068537a6e9da6d8b5b96d 
+https://gist.github.com/gravitylow/fb595186ce6068537a6e9da6d8b5b96d
 by @gravitylow.
 
 If you are getting this in gdb on OSX while trying to run a program:
@@ -320,7 +406,7 @@ Unable to find Mach task port for process-id 57573: (os/kern) failure (0x5).
 ```
 
 1. Open Keychain Access
-2. In the menu, open **Keychain Access > Certificate Assistant > 
+2. In the menu, open **Keychain Access > Certificate Assistant >
 Create a certificate**
 3. Give it a name (e.g. `gdbc`)
     + Identity type: Self Signed Root
@@ -329,7 +415,7 @@ Create a certificate**
 4. Continue until it prompts you for: "specify a location for..."
 5. Set Keychain location to System
 6. Create a certificate and close assistant.
-7. Find the certificate in System keychains, right click it > get 
+7. Find the certificate in System keychains, right click it > get
 info (or just double click it)
 8. Expand **Trust**, set **Code signing** to `always trust`
 9. Restart taskgated in terminal: `killall taskgated`
@@ -339,7 +425,7 @@ info (or just double click it)
     3. Login Options > "Join" (next to Network Account Server)
     4. Click "Open Directory Utility"
     5. Go up to **Edit > Enable Root User**
-11. Run `codesign -fs gdbc /usr/local/bin/gdb` in terminal: this asks 
+11. Run `codesign -fs gdbc /usr/local/bin/gdb` in terminal: this asks
 for the root password
 12. Disable root account (see #10)
 
@@ -368,10 +454,10 @@ One of my coworkers proposed a better solution that required very few changes. S
 
 ```Jenkinsfile
 #!/usr/bin/env groovy
-    
+
 // Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's
 // date and use it from Groovy.
-                
+
 // This function is not used but put here to show formatting ISO-style.
 def post_alarm(body) {
     String data = dataForCurl(body, '')
@@ -404,7 +490,7 @@ The following code summarizes and exhibits the core components I want to address
 
 ```Jenkinsfile
 #!/usr/bin/env groovy
-    
+
 // Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's
 // date and use it from Groovy.
 
@@ -413,7 +499,7 @@ The following code summarizes and exhibits the core components I want to address
 
 // Following pair of environment variables will be used later.
 env.utc_today=''
-env.utc_tomorrow='' 
+env.utc_tomorrow=''
 
 // This function is not used but put here to show formatting ISO-style.
 def post_alarm(body) {
