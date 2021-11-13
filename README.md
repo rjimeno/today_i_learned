@@ -1,7 +1,6 @@
 ## 2021-11-11: Object Orientation is more important than ever.
 
 I need refreshers of all the following:
-- Zombie vs orphan processes.
 - Unix signals.
 - The boot process.
 - Differences between RHEL 6, 7 & 8.
@@ -64,7 +63,18 @@ When run, the program will take a few seconds to execute. While it runs, you wil
  Credits go to [Wikipedia for the C code](https://en.wikipedia.org/wiki/Zombie_process#Example) and [Askubuntu for the ps-to-awk pipe](https://askubuntu.com/questions/111422/how-to-find-zombie-process).
 
 
-## 2021-11-09: Object Orientation is more important than ever.
+## 2021-11-09: Orphan processes.
+
+Generally, a process whose original parent terminated is called an *orphan* process.
+
+In Unix-like operating systems processes are created by processes that call the `fork()` system call.
+
+When a process creates another process, their parent-child relationship is tracked in process table. The spawned process is called the *child* process while the process that called `fork()` is called the *parent* process. Each process has exactly one parent.
+
+When a parent process terminates, the child process is often, but not always, immediately re-parented to the special `init` process and called an *orphan*.
+
+
+## 2021-11-08: Object Orientation is more important than ever.
 
 To be a successful software developer, you need to have thorough
 understanding of object orientation.
