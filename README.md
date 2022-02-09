@@ -1,3 +1,15 @@
+## 2021-11-18:
+
+[
+    A _bounce_ is a single-page session on your site.
+](https://support.google.com/analytics/answer/1009409?hl=en)
+
+Latency is a known cause of increased bounce rate in the sense that a human
+checking your website may become impatient while waiting for a web page to
+render and decide to leave. In some circumstances it makes sense to include
+_bounce rate_ as part of your observability pattern.
+
+
 ## 2021-11-17:
 
 It is important to keep in mind the latency associated with retrieving
