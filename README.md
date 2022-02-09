@@ -1,3 +1,14 @@
+## 2021-11-17:
+
+It is important to keep in mind the latency associated with retrieving
+data from memory vs the latency of retrieving data from disk. The chart
+below helps at visualizing and memorizing some of important latencies
+like, for example, the latency of a network round-trip within the same
+datacenter compared to the latency across continents and oceans.
+
+https://colin-scott.github.io/personal_website/research/interactive_latency.html
+
+
 ## 2021-11-15:
 
 On recent versions of Red Hat Enterprise Linux and similar distribution, if
