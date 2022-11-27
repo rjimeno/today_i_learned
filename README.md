@@ -1,3 +1,10 @@
+## 2021-12-17: Which system calls return a negative number on success?
+
+A few system calls (e.g., getpriority()) can legitimately return –1 on
+success. To determine whether an error occurs in such calls, we set errno
+to 0 before the call, and then check it afterward.
+
+
 ## 2021-11-18:
 
 [
@@ -156,9 +163,8 @@ Checking for stray cats under /var/cache/man/local...
 ```
 
 
-## 2021-11-11: Object Orientation is more important than ever.
+## 2021-11-11: To be successful, I need refreshers of all the following:
 
-I need refreshers of all the following:
 - Unix signals.
 - The boot process.
 - Differences between RHEL 6, 7 & 8.
