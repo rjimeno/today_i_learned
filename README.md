@@ -798,6 +798,18 @@ whose content is a 15-digit timestamp with the form YYYYMMddHHmmss where YYYY is
 the year, MM: the month, dd: day of the month, HH: 0 to 23 hours of the day, mm:
 0 to 59 minutes in each hour, ss: 0 to 59 or 60 seconds in a minute.
 
+## 2019-03-08: Better way to get tomorrow's date in Jenkins Pipeline.
+
+I intend to use the following to improve the Jenkinsfile code I showed on [2019-03-05](#2019-03-05) as this seems easier to understand and should be more efficient:
+
+```Groovy
+def temp_date= new Date()
+def tic_var=temp_date.format("dd")
+tic_var = tic_var.toInteger()+1
+def TICKET_DATE=temp_date.format("YYYY-MM-$tic_var HH:mm:ss")
+echo "Print Date: $TICKET_DATE"
+```
+
 That Jenkinsfile is good because it can be deployed by a regular user without
 requiring approval from an administrator on most (probably all) Unix-like
 Jenkins hosts. On the other hand, its code is long-winded and cumbersome. For
@@ -809,7 +821,7 @@ So far, the only downsides I see are that it does require approval from an
 administrator (as static methods are not allowed on Jenkin's Groovy) and that it
 does not entirely run on non-Unix systems yet. Here's the code:
 
-```Jenkinsfile
+```Groovy
 #!/usr/bin/env groovy
 
 // Jenkins Scripted Pipeline by Roberto Jimeno shows a way to get tomorrow's
