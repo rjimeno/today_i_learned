@@ -49,9 +49,9 @@ Cloudflare servers for `linuxacademy.com.`.
 
 ## 2021-12-17: Which system calls return a negative number on success?
 
-A few system calls (e.g., getpriority()) can legitimately return –1 on
-success. To determine whether an error occurs in such calls, we set errno
-to 0 before the call, and then check it afterward.
+A few system calls (e.g., [`getpriority()`](https://man7.org/linux/man-pages/man2/setpriority.2.html))
+can legitimately return `–1` on success. To determine whether an error occurs
+in such calls, we set `errno` to `0` before the call, and then check it afterward.
 
 
 ## 2021-11-19: Cacheing.
