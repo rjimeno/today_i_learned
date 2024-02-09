@@ -43,7 +43,7 @@ linuxacademy.com.	172800	IN	NS	brianna.ns.cloudflare.com.
 ```
 
 The above shows the root servers being consulted for `.`, then the generic
-top level domain (`gtld` substring) servers for `.com.` and finally
+top-level domain (`gtld` substring) servers for `.com.` and finally
 Cloudflare servers for `linuxacademy.com.`.
 
 
@@ -55,9 +55,13 @@ metadata of an instance (from itself) is:
 ``TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/``
 
 So, some of my most common queries (for IPv4 addresses or the whole
-user-data script now are
+user-data script) now are:
 
-``TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/local-ipv4`` and ``TOKEN=`curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/user-data``
+``TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/local-ipv4``
+
+and
+
+``TOKEN=`curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/user-data``
 
 For convenience (and readability of this entry) it may come handy to export the session token, then reuse it as in the example below:
 
