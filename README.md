@@ -47,6 +47,32 @@ top level domain (`gtld` substring) servers for `.com.` and finally
 Cloudflare servers for `linuxacademy.com.`.
 
 
+## 2023-02-09: The secure way to get metadata from ec2 instances.
+
+Under IMDSv2, the command-line way to obtain all (or most) of the
+metadata of an instance (from itself) is:
+
+`TOKEN=\`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"\` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/`
+
+So, some of my most common queries (for IPv4 addresses or the whole
+user-data script now are
+
+`TOKEN=\`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"\` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/local-ipv4\` and `TOKEN=\`curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"\` && curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/user-data`
+
+For convenience (and readability of this entry) it may come handy to export the session token, then reuse it as in the example below:
+
+```sh
+[ec2-user@ip-172-31-16-118 ~]$ export TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    56  100    56    0     0   8606      0 --:--:-- --:--:-- --:--:--  9333
+[ec2-user@ip-172-31-16-118 ~]$ curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/local-ipv4 && echo
+172.31.16.118
+[ec2-user@ip-172-31-16-118 ~]$ curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/user-data && echo
+sudo dnf update -y
+sudo dnf install mariadb105-server
+```
+
 ## 2021-12-17: Which system calls return a negative number on success?
 
 A few system calls (e.g., [`getpriority()`](https://man7.org/linux/man-pages/man2/setpriority.2.html))
